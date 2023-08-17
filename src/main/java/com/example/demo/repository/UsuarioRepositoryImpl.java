@@ -1,28 +1,34 @@
 package com.example.demo.repository;
 
+
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.repository.modelo.Usuario;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
-import jakarta.transaction.Transactional;
+ 
 
 @Repository
 @Transactional
-public class UsuarioRepositoryImpl  implements IUsuarioRepository{
-	
-	@PersistenceContext
-	private EntityManager entityManager;
+public class UsuarioRepositoryImpl implements IUsuarioRepository {
+
+ 
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
+
+
 
 	@Override
 	public Usuario consultarUsuario(String userName) {
-		TypedQuery<Usuario> myQuery=this.entityManager.createQuery(
-				"SELECT u FROM Usuario u WHERE u.nombre:=datoNombre", 
-				Usuario.class);
-		myQuery.setParameter("datoNombre", userName);
-		return myQuery.getSingleResult();
+        TypedQuery<Usuario>myQuery=this.entityManager.createQuery("SELECT u FROM Usuario u WHERE u.username:=nombreUsuario", Usuario.class);
+        myQuery.setParameter("nombreUsuario",userName);
+        return myQuery.getSingleResult();
 	}
-
 }

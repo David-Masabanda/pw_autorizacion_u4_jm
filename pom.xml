@@ -10,9 +10,9 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.pweb</groupId>
-	<artifactId>pw_autorizacion_u4_p4_dv</artifactId>
+	<artifactId>pw_autorizacion_u4_p4_jm</artifactId>
 	<version>1.0.1-SNAPSHOT</version>
-	<name>pw_autorizacion_u4_p4_dv</name>
+	<name>pw_autorizacion_u4_p4_jm</name>
 	<description>Proyecto en Spring</description>
 	<properties>
 		<java.version>17</java.version>

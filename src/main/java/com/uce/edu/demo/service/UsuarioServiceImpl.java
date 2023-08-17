@@ -23,7 +23,7 @@ public class UsuarioServiceImpl implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
-		Usuario usuario=this.iUsuarioRepository.consultarPorUsername(username);
+		Usuario usuario=this.iUsuarioRepository.consultarPorNombre(username);
 		return new User(usuario.getUsername(), usuario.getPassword(), emptyList());
 	}
 

@@ -20,8 +20,9 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException authException) throws IOException, ServletException {
-		// TODO Auto-generated method stub
 		LOG.error("Unauthorized error {}",authException.getMessage());
+		LOG.error(request.getServletPath());
 	}
+	
 
 }

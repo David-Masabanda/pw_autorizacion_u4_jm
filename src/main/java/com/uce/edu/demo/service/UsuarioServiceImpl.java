@@ -14,8 +14,6 @@ import com.uce.edu.demo.repository.modelo.Usuario;
 
 @Service
 public class UsuarioServiceImpl implements UserDetailsService {
-
-	//Usamos UserDetailsService para no usar la interfaz del service
 	
 	@Autowired
 	private IUsuarioRepository iUsuarioRepository;
@@ -24,7 +22,7 @@ public class UsuarioServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		Usuario usuario=this.iUsuarioRepository.consultarPorNombre(username);
-		return new User(usuario.getUsername(), usuario.getPassword(), emptyList());
+		return new User(usuario.getNombre(), usuario.getPassword(), emptyList());
 	}
 
 	

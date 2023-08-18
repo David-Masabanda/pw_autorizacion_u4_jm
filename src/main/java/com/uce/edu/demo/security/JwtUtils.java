@@ -14,22 +14,32 @@ import io.jsonwebtoken.SignatureAlgorithm;
 @Component
 public class JwtUtils {
 	
-	//Solo para probar, no usar
-	private static final Logger LOG=LoggerFactory.getLogger(AuthEntryPointJwt.class);
-	
-	@Value("${app.jwt.secret}")
-    private String jwtSecret;
+    private static final Logger LOG= LoggerFactory.getLogger(JwtUtils.class);
+    @Value("${app.jwt.secret}")
 
-	@Value("${app.jwt.expiration.ms}")
+    private String jwtSecret;
+    @Value("${app.jwt.expiration.ms}")
     private int jwtExpiration;
 
-	public String generateJwtToken(Authentication authentication, String nombre) {
-		LOG.info("Semilla: "+jwtSecret+" Tiempo: "+jwtExpiration);
-		return Jwts.builder().setSubject(nombre).
+    public String generateJwtToken(Authentication authentication, String name) {
+    	LOG.info("Semilla: "+jwtSecret);
+        LOG.info("Tiempo: "+jwtExpiration);
+
+        return Jwts.builder().setSubject(name).
                 setIssuedAt(new Date()).
-              //Tiempo de expiracion del token
                 setExpiration(new Date(System.currentTimeMillis() + this.jwtExpiration)).
-              //usa el algoritmo con esta semilla
                 signWith(SignatureAlgorithm.HS512, this.jwtSecret).compact();
-	}
+    }
+    
+    
+    public String generateJwtToken(String name) {
+        LOG.info("Semilla: "+jwtSecret);
+        LOG.info("Tiempo: "+jwtExpiration);
+
+        return Jwts.builder().setSubject(name).
+                setIssuedAt(new Date()).
+                setExpiration(new Date(System.currentTimeMillis() + this.jwtExpiration)).
+                signWith(SignatureAlgorithm.HS512, this.jwtSecret).compact();
+    }
+    
 }

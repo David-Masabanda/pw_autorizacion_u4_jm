@@ -13,14 +13,13 @@ import com.uce.edu.demo.repository.modelo.Usuario;
 @Transactional
 public class UsuarioRepositoryImpl implements IUsuarioRepository {
 
-	@PersistenceContext
+    @PersistenceContext
     private EntityManager entityManager;
 
 	@Override
 	public Usuario consultarPorNombre(String username) {
-		// TODO Auto-generated method stub
-		TypedQuery<Usuario>myQuery=this.entityManager.createQuery("SELECT u FROM Usuario u WHERE u.username:=nombreUsuario", Usuario.class);
-        myQuery.setParameter("nombreUsuario",username);
-        return myQuery.getSingleResult();
+		   TypedQuery<Usuario> myQuery=this.entityManager.createQuery("SELECT u FROM Usuario u WHERE u.nombre=:userName", Usuario.class);
+	        myQuery.setParameter("userName",username);
+	        return myQuery.getSingleResult();
 	}
 }

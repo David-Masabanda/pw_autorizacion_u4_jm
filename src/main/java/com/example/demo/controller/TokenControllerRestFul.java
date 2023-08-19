@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.repository.IUsuarioRepository;
 import com.example.demo.repository.modelo.Usuario;
 import com.example.demo.security.JwtUtils;
-import com.example.demo.service.to.UsuarioTO;
 
 @RestController
 @CrossOrigin

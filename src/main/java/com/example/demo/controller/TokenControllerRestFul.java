@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.repository.IUsuarioRepository;
 import com.example.demo.repository.modelo.Usuario;
 import com.example.demo.security.JwtUtils;
-import com.example.demo.service.to.UsuarioTO;
+import com.example.demo.service.to.DatosTO;
 
 @RestController
 @CrossOrigin
@@ -32,11 +34,20 @@ public class TokenControllerRestFul {
 	@Autowired
 	private JwtUtils jwtUtils;
 	
+	private static final Logger LOG=LoggerFactory.getLogger(TokenControllerRestFul.class);
+	
+//	@GetMapping(path = "/obtener")
+//	public String obtenerToken(@RequestBody Usuario usuario) {
+//		
+//		LOG.info(usuario.getNombre()+" "+usuario.getPassword());
+//		this.authenticated(usuario.getNombre(), usuario.getPassword());
+//		return this.jwtUtils.generateJwtToken(usuario.getNombre());
+//	}
+	
 	@GetMapping(path = "/obtener")
-	public String obtenerToken(@RequestBody Usuario usuaio) {
-		this.authenticated(usuaio.getNombre(), usuaio.getPassword());
-		return this.jwtUtils.generateJwtToken(usuaio.getNombre());
-		//return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkRhdmlkIE1hcmtzIiwiaWF0IjoxNTE2MjM5MDIyfQ.SjwhHLt3xMv3-nu7vszHf8YUJX1DA2_5UZ5MMwQBIM0";
+	public String obtenerToken(@RequestBody DatosTO datos) {
+		this.authenticated(datos.getNombre(), datos.getPassword());
+		return this.jwtUtils.generateJwtToken(datos.getNombre(), datos);
 	}
 	
 	@GetMapping(path = "/usuario", produces = MediaType.APPLICATION_JSON_VALUE)
